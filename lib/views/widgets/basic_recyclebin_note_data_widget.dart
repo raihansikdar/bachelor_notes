@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shopping_notes/model/recyclebin_note_model.dart';
-import 'package:shopping_notes/utils/app_colors.dart';
+import 'package:bachelor_notes/model/recyclebin_note_model.dart';
+import 'package:bachelor_notes/utils/app_colors.dart';
 
 class BasicRecycleBinNoteDataWidget extends StatelessWidget {
   final RycleBinNoteModel basicRecycleNoteData;

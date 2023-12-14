@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:get/get.dart';
-import 'package:shopping_notes/controller/fetch_shopping_data_controller.dart';
-import 'package:shopping_notes/controller/my_drawer_controller.dart';
-import 'package:shopping_notes/controller/transferData_controller.dart';
-import 'package:shopping_notes/utils/app_colors.dart';
-import 'package:shopping_notes/utils/assets_path.dart';
+import 'package:bachelor_notes/controller/fetch_shopping_data_controller.dart';
+import 'package:bachelor_notes/controller/my_drawer_controller.dart';
+import 'package:bachelor_notes/controller/transferData_controller.dart';
+import 'package:bachelor_notes/utils/app_colors.dart';
+import 'package:bachelor_notes/utils/assets_path.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 

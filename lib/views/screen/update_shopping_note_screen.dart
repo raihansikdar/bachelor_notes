@@ -5,12 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:get/get.dart';
-import 'package:shopping_notes/controller/add_shoping_data_controller.dart';
-import 'package:shopping_notes/controller/fetch_shopping_data_controller.dart';
-import 'package:shopping_notes/controller/update_shopping_note_controller.dart';
-import 'package:shopping_notes/utils/app_colors.dart';
-import 'package:shopping_notes/utils/custom_size_extension.dart';
-import 'package:shopping_notes/views/screen/shopping_note_home_screen.dart';
+import 'package:bachelor_notes/controller/add_shoping_data_controller.dart';
+import 'package:bachelor_notes/controller/fetch_shopping_data_controller.dart';
+import 'package:bachelor_notes/controller/update_bachelor_notes_controller.dart';
+import 'package:bachelor_notes/utils/app_colors.dart';
+import 'package:bachelor_notes/utils/custom_size_extension.dart';
+import 'package:bachelor_notes/views/screen/bachelor_notes_home_screen.dart';
 
 import '../../utils/assets_path.dart';
 

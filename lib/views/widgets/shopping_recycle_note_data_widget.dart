@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:shopping_notes/model/shopping_note_model.dart';
-import 'package:shopping_notes/model/shopping_note_recyclebin_model.dart';
-import 'package:shopping_notes/utils/app_colors.dart';
-import 'package:shopping_notes/utils/custom_size_extension.dart';
+import 'package:bachelor_notes/model/shopping_note_model.dart';
+import 'package:bachelor_notes/model/shopping_note_recyclebin_model.dart';
+import 'package:bachelor_notes/utils/app_colors.dart';
+import 'package:bachelor_notes/utils/custom_size_extension.dart';
 
 class ShoppingRecycleBinNoteDataWidget extends StatelessWidget {
   final ShoppingNoteRecycleBinModel shoppingRecycleBinListData;

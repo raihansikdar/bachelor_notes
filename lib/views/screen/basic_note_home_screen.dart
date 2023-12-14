@@ -1,17 +1,17 @@
 import 'dart:async';
-import 'package:shopping_notes/controller/fetch_data_controller.dart';
-import 'package:shopping_notes/controller/my_drawer_controller.dart';
-import 'package:shopping_notes/utils/app_colors.dart';
-import 'package:shopping_notes/utils/assets_path.dart';
-import 'package:shopping_notes/utils/debouncer.dart';
-import 'package:shopping_notes/views/screen/add_note_screen.dart';
-import 'package:shopping_notes/views/screen/recyclebin_screen.dart';
-import 'package:shopping_notes/views/screen/update_note_screen.dart';
+import 'package:bachelor_notes/controller/fetch_data_controller.dart';
+import 'package:bachelor_notes/controller/my_drawer_controller.dart';
+import 'package:bachelor_notes/utils/app_colors.dart';
+import 'package:bachelor_notes/utils/assets_path.dart';
+import 'package:bachelor_notes/utils/debouncer.dart';
+import 'package:bachelor_notes/views/screen/add_note_screen.dart';
+import 'package:bachelor_notes/views/screen/recyclebin_screen.dart';
+import 'package:bachelor_notes/views/screen/update_note_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:scroll_loop_auto_scroll/scroll_loop_auto_scroll.dart';
-import 'package:shopping_notes/views/widgets/basic_note_data_widget.dart';
+import 'package:bachelor_notes/views/widgets/basic_note_data_widget.dart';
 
 class BasicNoteHomeScreen extends StatefulWidget {
   const BasicNoteHomeScreen({Key? key}) : super(key: key);

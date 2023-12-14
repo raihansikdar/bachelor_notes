@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:shopping_notes/controller/fetch_data_controller.dart';
-import 'package:shopping_notes/controller/add_data_controller.dart';
-import 'package:shopping_notes/utils/app_colors.dart';
-import 'package:shopping_notes/utils/custom_size_extension.dart';
+import 'package:bachelor_notes/controller/fetch_data_controller.dart';
+import 'package:bachelor_notes/controller/add_data_controller.dart';
+import 'package:bachelor_notes/utils/app_colors.dart';
+import 'package:bachelor_notes/utils/custom_size_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';

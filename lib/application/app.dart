@@ -17,7 +17,7 @@ class BachelorNotes extends StatelessWidget {
 
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      initialBinding: StateholderBinder(),
+      initialBinding: StateHolderBinder(),
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
       ),

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shopping_notes/utils/app_colors.dart';
-import 'package:shopping_notes/utils/assets_path.dart';
-import 'package:shopping_notes/utils/custom_size_extension.dart';
-import 'package:shopping_notes/views/screen/home_page.dart';
+import 'package:bachelor_notes/utils/app_colors.dart';
+import 'package:bachelor_notes/utils/assets_path.dart';
+import 'package:bachelor_notes/utils/custom_size_extension.dart';
+import 'package:bachelor_notes/views/screen/home_page.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);

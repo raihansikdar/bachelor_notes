@@ -1,15 +1,15 @@
 import 'dart:async';
 
-import 'package:shopping_notes/controller/fetch_shopping_data_controller.dart';
-import 'package:shopping_notes/utils/app_colors.dart';
-import 'package:shopping_notes/utils/assets_path.dart';
-import 'package:shopping_notes/utils/custom_size_extension.dart';
+import 'package:bachelor_notes/controller/fetch_shopping_data_controller.dart';
+import 'package:bachelor_notes/utils/app_colors.dart';
+import 'package:bachelor_notes/utils/assets_path.dart';
+import 'package:bachelor_notes/utils/custom_size_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shopping_notes/views/screen/restore_shopping_note_screen.dart';
+import 'package:bachelor_notes/views/screen/restore_bachelor_notes_screen.dart';
 
 import 'package:scroll_loop_auto_scroll/scroll_loop_auto_scroll.dart';
-import 'package:shopping_notes/views/widgets/shopping_recycle_note_data_widget.dart';
+import 'package:bachelor_notes/views/widgets/shopping_recycle_note_data_widget.dart';
 
 class ShoppingRecycleBinScreen extends StatefulWidget {
   const ShoppingRecycleBinScreen({Key? key}) : super(key: key);
