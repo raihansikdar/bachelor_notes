@@ -2,15 +2,16 @@ import 'dart:async';
 import 'dart:developer';
 
 
+import 'package:bachelor_notes/utils/app%20toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:bachelor_notes/controller/add_shoping_data_controller.dart';
 import 'package:bachelor_notes/controller/fetch_shopping_data_controller.dart';
 import 'package:bachelor_notes/utils/app_colors.dart';
 import 'package:bachelor_notes/utils/custom_size_extension.dart';
-import 'package:bachelor_notes/views/screen/bachelor_notes_home_screen.dart';
 
 import '../../utils/assets_path.dart';
 
@@ -66,7 +67,7 @@ class _AddShoppingNoteScreenState extends State<AddShoppingNoteScreen> {
 
 
 
-  TimeOfDay? _selectedTime;
+   TimeOfDay? _selectedTime;
    late String _time;
 
   void _startClock(){
@@ -106,6 +107,13 @@ class _AddShoppingNoteScreenState extends State<AddShoppingNoteScreen> {
           resizeToAvoidBottomInset: true,
           appBar: AppBar(
             backgroundColor: AppColors.appBackgroundColor,
+            leading: GestureDetector(
+              onTap:(){
+                Navigator.pop(context);
+              },
+              child: Icon(Icons.arrow_back_ios,size: 18.0,color: AppColors.yellowColor,),
+            ),
+            titleSpacing: 0.0,
             title: Text("Add Shopping Notes", style: TextStyle(fontSize: 20.rSp,letterSpacing: 0.5, color: Colors.yellow),),
             actions: [
 
@@ -137,18 +145,16 @@ class _AddShoppingNoteScreenState extends State<AddShoppingNoteScreen> {
                 );
 
                 if(response == true){
-                  Get.snackbar("Successful", "Notes have been Added",colorText:Colors.white,
-                    backgroundColor: Colors.green.withOpacity(0.7),
-                  );
+
+                  AppToast.showNormalToast(AppToast.added);
+
                    Future.delayed(const Duration(seconds: 2)).then((value) {
                     Navigator.pop(context);
                     Get.find<FetchShoppingDataController>().fetchData();
                   });
 
                 }else{
-                  Get.snackbar("Failed", "Notes not Added",colorText:Colors.white,
-                    backgroundColor: Colors.red.withOpacity(0.7),
-                  );
+                  AppToast.showNormalToast(AppToast.notAdded);
                 }
               }, child: const Icon(Icons.check,color: Colors.white60,)),
               const SizedBox(width: 20,)
@@ -237,9 +243,8 @@ class _AddShoppingNoteScreenState extends State<AddShoppingNoteScreen> {
                     ),
                     TextFormField(
                       controller: _titleTEController,
-                      //inputFormatters: [LengthLimitingTextInputFormatter(25)],
-                      minLines: 1,
-                      maxLines: 3,
+                      inputFormatters: [LengthLimitingTextInputFormatter(50)],
+
                       cursorColor: AppColors.yellowColor,
                       style: const TextStyle(color: Colors.white60),
                       decoration: const InputDecoration(

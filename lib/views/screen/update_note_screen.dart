@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:bachelor_notes/controller/fetch_data_controller.dart';
 import 'package:bachelor_notes/controller/update_data_controller.dart';
+import 'package:bachelor_notes/utils/app%20toast.dart';
 import 'package:bachelor_notes/utils/app_colors.dart';
 import 'package:bachelor_notes/utils/custom_size_extension.dart';
 import 'package:flutter/material.dart';
@@ -70,11 +71,12 @@ class _UpdateNoteScreenState extends State<UpdateNoteScreen> {
         appBar: AppBar(
           backgroundColor: const Color.fromARGB(255, 44, 32, 32),
           leading: GestureDetector(
-              onTap: (){
-                Get.find<FetchDataController>().fetchData();
-                Navigator.pop(context);
-              },
-              child: const Icon(Icons.arrow_back)),
+            onTap:(){
+              Get.find<FetchDataController>().fetchData();
+              Navigator.pop(context);
+            },
+            child: Icon(Icons.arrow_back_ios,size: 18.0,color: AppColors.yellowColor,),
+          ),
           title: const Text("Update Note", style: TextStyle(fontSize: 20.0,letterSpacing: 0.5, color: Colors.yellow),),
           actions: [
             Row(
@@ -87,19 +89,15 @@ class _UpdateNoteScreenState extends State<UpdateNoteScreen> {
                       _dateTEController.clear();
                       _titleTEController.clear();
                       _noteTEController.clear();
-                     Get.snackbar("Successful", "Notes have been deleted",colorText:Colors.white,
-                         backgroundColor: Colors.green.withOpacity(0.7)
-                     );
-                      // Navigator.pop(context);
-                      // Get.find<FetchDataController>().fetchData();
+
+                      AppToast.showNormalToast(AppToast.deleted);
+
                       Future.delayed(const Duration(seconds: 2)).then((value) {
                         Navigator.pop(context);
                         Get.find<FetchDataController>().fetchData();
                       });
                     }else{
-                      Get.snackbar("Failed", "Notes not deleted",colorText:Colors.white,
-                          backgroundColor: Colors.red.withOpacity(0.7),
-                      );
+                      AppToast.showWrongToast(AppToast.notDeleted);
                     }
                   }, child: Icon(Icons.delete,color: AppColors.yellowColor,));
                 }
@@ -115,14 +113,15 @@ class _UpdateNoteScreenState extends State<UpdateNoteScreen> {
                     }
                     final response = await _updateDataController.updateData(id:widget.id, date: _dateTEController.text.trim(), title: _titleTEController.text.trim(), note: _noteTEController.text.trim(), time: _time.trim());
                     if(response == true){
-                      Get.snackbar("Successful", "Notes have been Updated",colorText:Colors.white,backgroundColor: Colors.green.withOpacity(0.7));
+                      AppToast.showNormalToast(AppToast.updated);
+
 
                       Future.delayed(const Duration(seconds: 2)).then((value) {
                         Navigator.pop(context);
                         Get.find<FetchDataController>().fetchData();
                       });
                     }else{
-                      Get.snackbar("Failed", "Notes not Updated",colorText:Colors.white, backgroundColor: Colors.red.withOpacity(0.7));
+                      AppToast.showWrongToast(AppToast.notUpdated);
                     }
                   }, child: const Icon(Icons.check,color: Colors.white60,));
                 }

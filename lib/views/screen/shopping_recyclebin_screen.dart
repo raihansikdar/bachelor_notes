@@ -1,13 +1,13 @@
 import 'dart:async';
 
 import 'package:bachelor_notes/controller/fetch_shopping_data_controller.dart';
+import 'package:bachelor_notes/utils/app%20toast.dart';
 import 'package:bachelor_notes/utils/app_colors.dart';
 import 'package:bachelor_notes/utils/assets_path.dart';
 import 'package:bachelor_notes/utils/custom_size_extension.dart';
+import 'package:bachelor_notes/views/screen/restore_shopping_note_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:bachelor_notes/views/screen/restore_bachelor_notes_screen.dart';
-
 import 'package:scroll_loop_auto_scroll/scroll_loop_auto_scroll.dart';
 import 'package:bachelor_notes/views/widgets/shopping_recycle_note_data_widget.dart';
 
@@ -37,12 +37,13 @@ class _ShoppingRecycleBinScreenState extends State<ShoppingRecycleBinScreen> {
         backgroundColor: AppColors.appBackgroundColor,
         elevation: 2,
         leading: GestureDetector(
-            onTap: (){
-              Navigator.pop(context);
-              Get.find<FetchShoppingDataController>().fetchData();
-
-            },
-            child: const Icon(Icons.arrow_back,)),
+          onTap:(){
+            Get.find<FetchShoppingDataController>().fetchData();
+            Navigator.pop(context);
+          },
+          child: Icon(Icons.arrow_back_ios,size: 18.0,color: AppColors.yellowColor,),
+        ),
+        titleSpacing: 0.0,
         title: Row(
           children: [
             Text(
@@ -60,7 +61,7 @@ class _ShoppingRecycleBinScreenState extends State<ShoppingRecycleBinScreen> {
             GestureDetector(
               onTap: (){
                 Get.find<FetchShoppingDataController>().shoppingNoteRecycleBinList.isEmpty ?
-                Get.snackbar("Empty", "Recycle bin is already empty",colorText: Colors.white,icon: const Icon(Icons.delete_sweep,color: Colors.white,size: 30,))
+                AppToast.showWrongToast(AppToast.empty)
                     :  showDialog(context: context, builder: (context){
 
                   return AlertDialog(
@@ -70,7 +71,8 @@ class _ShoppingRecycleBinScreenState extends State<ShoppingRecycleBinScreen> {
                     contentPadding: const EdgeInsets.symmetric(vertical:8,horizontal: 16.0),
                     content: const Text("Are you sure you want to delete all the notes from Recycle bin?",style: TextStyle(fontSize: 14.0,fontWeight: FontWeight.w400,color: Colors.yellow),),
                     actions: [
-                      ElevatedButton(onPressed: (){
+                      ElevatedButton(
+                          onPressed: (){
                         Navigator.pop(context);
                       }, child: const Text("Cancel")),
                       ElevatedButton(onPressed: (){

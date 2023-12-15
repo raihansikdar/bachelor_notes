@@ -1,9 +1,10 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:shopping_notes/database/database_helper.dart';
-import 'package:shopping_notes/model/note_model.dart';
-import 'package:shopping_notes/model/recyclebin_note_model.dart';
+import 'package:bachelor_notes/database/database_helper.dart';
+import 'package:bachelor_notes/model/note_model.dart';
+import 'package:bachelor_notes/model/recyclebin_note_model.dart';
+import 'package:bachelor_notes/utils/app%20toast.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -137,8 +138,7 @@ class FetchDataController extends GetxController {
         if (deleteResponse > 0) {
           await db.insert('trashTable', _deletedNote.toJson());
           await db.update(
-              'trashTable', {'time': time, 'deletedDate': deletedDate},
-              where: 'id = ?', whereArgs: [id]);
+              'trashTable', {'time': time, 'deletedDate': deletedDate}, where: 'id = ?', whereArgs: [id]);
 
           _searchNoteList.removeWhere((element) => element.id == id);
 
@@ -214,9 +214,7 @@ class FetchDataController extends GetxController {
       _isLoading = false;
       if (response > 0) {
         _trashNotesList.clear();
-        Get.snackbar("Successful", "All note has been deleted",
-            colorText: Colors.white,
-            backgroundColor: Colors.green.withOpacity(0.7));
+        AppToast.showNormalToast('All note has been deleted.');
         update();
         return true;
       } else {

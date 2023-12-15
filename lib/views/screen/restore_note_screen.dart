@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:bachelor_notes/controller/fetch_data_controller.dart';
 import 'package:bachelor_notes/controller/update_data_controller.dart';
+import 'package:bachelor_notes/utils/app%20toast.dart';
 import 'package:bachelor_notes/utils/app_colors.dart';
 import 'package:bachelor_notes/utils/custom_size_extension.dart';
 import 'package:flutter/material.dart';
@@ -75,6 +76,7 @@ class _RestoreNoteScreenState extends State<RestoreNoteScreen> {
         backgroundColor: const Color.fromARGB(255, 44, 32, 32),
         appBar: AppBar(
           backgroundColor: const Color.fromARGB(255, 44, 32, 32),
+
           title: const Text("Restore Note", style: TextStyle(fontSize: 20.0,letterSpacing: 0.5, color: Colors.yellow),),
           actions: [
             Row(
@@ -87,15 +89,16 @@ class _RestoreNoteScreenState extends State<RestoreNoteScreen> {
                           _dateTEController.clear();
                           _titleTEController.clear();
                           _noteTEController.clear();
-                          Get.snackbar("Successful", "Notes have been deleted permanently",colorText:Colors.white,backgroundColor: Colors.green.withOpacity(0.7));
 
+                          AppToast.showWrongToast(AppToast.permanentlyDelete);
 
                           Future.delayed(const Duration(seconds: 2)).then((value) {
                             Navigator.pop(context);
                             Get.find<FetchDataController>().fetchData();
                           });
                         }else{
-                          Get.snackbar("Failed", "Notes not deleted",colorText:Colors.white,backgroundColor: Colors.red.withOpacity(0.7));
+                          AppToast.showWrongToast(AppToast.notPermanentlyDelete);
+
                         }
                       }, child: Icon(Icons.delete,color: AppColors.yellowColor,));
                       const SizedBox(width: 10,);
@@ -108,18 +111,18 @@ class _RestoreNoteScreenState extends State<RestoreNoteScreen> {
                     onTap: () async{
                      final response = await  Get.find<FetchDataController>().restoreDeletedData(id: widget.id, date: _dateTEController.text.trim(), title: _titleTEController.text.trim(), note:_noteTEController.text.trim(), time: _time.trim());
                      if(response == true){
-
-                       Get.snackbar("Successful", "Notes have been Restored",colorText:Colors.white,backgroundColor: Colors.green.withOpacity(0.7));
+                       AppToast.showNormalToast(AppToast.restored);
                        Future.delayed(const Duration(seconds: 2)).then((value) {
                          Navigator.pop(context);
                          Get.find<FetchDataController>().fetchTrashData();
                        });
 
                      }else{
-                       Get.snackbar("Failed", "Notes not Restored",colorText:Colors.white,backgroundColor: Colors.red.withOpacity(0.7));
+
+                       AppToast.showWrongToast(AppToast.notRestored);
                      }
                     },
-                    child: const Icon(Icons.restore)),
+                    child: const Icon(Icons.restore,color: Colors.white60,)),
 
               ],
             ),

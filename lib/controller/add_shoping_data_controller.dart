@@ -1,8 +1,9 @@
 import 'dart:developer';
 
-import 'package:shopping_notes/database/database_helper.dart';
+import 'package:bachelor_notes/database/database_helper.dart';
+import 'package:bachelor_notes/model/shopping_note_model.dart';
 import 'package:get/get.dart';
-import 'package:shopping_notes/model/shopping_note_model.dart';
+
 
 class AddShoppingDataController extends GetxController{
   bool _isLoading = false;

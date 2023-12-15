@@ -44,7 +44,7 @@ class ShoppingNoteDataWidget extends StatelessWidget {
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
                                   style:TextStyle(
-                                    fontSize: 17.0,
+                                    fontSize: 17.rSp,
                                     fontWeight: FontWeight.w600,
                                     letterSpacing: 0.5,
                                     color: AppColors.titleColor,

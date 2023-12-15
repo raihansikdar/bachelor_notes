@@ -49,6 +49,13 @@ class _BasicNoteHomeScreenState extends State<BasicNoteHomeScreen> {
       appBar: AppBar(
         backgroundColor: AppColors.appBackgroundColor,
         elevation: 2,
+        leading: GestureDetector(
+          onTap:(){
+            Navigator.pop(context);
+          },
+          child: Icon(Icons.arrow_back_ios,size: 18.0,color: AppColors.yellowColor,),
+        ),
+        titleSpacing: 0.0,
         title: Row(
           children: [
             GestureDetector(
@@ -58,10 +65,19 @@ class _BasicNoteHomeScreenState extends State<BasicNoteHomeScreen> {
                 child: Image.asset(AssetsPath.appLogoPNG,height: 24,errorBuilder: (_,__,___){return const Icon(Icons.image);},)),
             const SizedBox(width: 10,),
              const Expanded(
-               child: Text(
-                "Basic Notes",
-                style: TextStyle(fontSize: 23.0, color: Colors.yellow),
-            ),
+               child: Column(
+                 crossAxisAlignment: CrossAxisAlignment.start,
+                 children: [
+                   Text(
+                     "Bachelor Notes",
+                     style: TextStyle(fontSize: 20, color: Colors.yellow),
+                   ),
+                   Text(
+                     "General Notepad",
+                     style: TextStyle(fontSize: 8, color: Colors.yellow),
+                   ),
+                 ],
+               ),
              ),
           ],
         ),

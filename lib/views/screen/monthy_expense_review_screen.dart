@@ -34,6 +34,13 @@ class _MonthlyExpenseReviewScreenState extends State<MonthlyExpenseReviewScreen>
       backgroundColor: AppColors.appBackgroundColor,
       appBar: AppBar(
         backgroundColor: AppColors.appBackgroundColor,
+        leading: GestureDetector(
+          onTap:(){
+            Navigator.pop(context);
+          },
+          child: Icon(Icons.arrow_back_ios,size: 18.0,color: AppColors.yellowColor,),
+        ),
+        titleSpacing: 0.0,
         title: Text("Monthly Expense Review Screen",
         style: TextStyle(
           fontSize: 20.rSp,
@@ -166,9 +173,17 @@ class _MonthlyExpenseReviewScreenState extends State<MonthlyExpenseReviewScreen>
                                             fontSize: 16.0,
                                             fontWeight: FontWeight.w600,
                                           ),
-
                                         ),
                                       ],
+                                    ),
+                                    Text(_fetchMonthlyExpenseReviewController.shoppingNoteList[index].title?? '',
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: const TextStyle(
+                                        fontSize: 10.0,
+                                        fontWeight: FontWeight.w400,
+                                      ),
+
                                     ),
                                     const SizedBox(height: 8.0,),
                                     Row(

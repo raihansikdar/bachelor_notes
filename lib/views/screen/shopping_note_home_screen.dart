@@ -3,20 +3,21 @@ import 'dart:async';
 import 'package:bachelor_notes/controller/fetch_shopping_data_controller.dart';
 import 'package:bachelor_notes/controller/my_drawer_controller.dart';
 import 'package:bachelor_notes/controller/transferData_controller.dart';
+import 'package:bachelor_notes/utils/app%20toast.dart';
 import 'package:bachelor_notes/utils/app_colors.dart';
 import 'package:bachelor_notes/utils/assets_path.dart';
 import 'package:bachelor_notes/utils/custom_size_extension.dart';
 import 'package:bachelor_notes/utils/debouncer.dart';
+import 'package:bachelor_notes/views/screen/add_shopping_note_screen.dart';
 import 'package:bachelor_notes/views/screen/basic_note_home_screen.dart';
-import 'package:bachelor_notes/views/screen/add_bachelor_notes_screen.dart';
 import 'package:bachelor_notes/views/screen/monthy_expense_review_screen.dart';
 import 'package:bachelor_notes/views/screen/shopping_recyclebin_screen.dart';
+import 'package:bachelor_notes/views/screen/update_shopping_note_screen.dart';
+import 'package:bachelor_notes/views/widgets/shopping_note_data_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:bachelor_notes/views/screen/update_bachelor_notes_screen.dart';
 import 'package:scroll_loop_auto_scroll/scroll_loop_auto_scroll.dart';
-import 'package:bachelor_notes/views/widgets/bachelor_notes_data_widget.dart';
 
 class ShoppingNoteHomeScreen extends StatefulWidget {
   const ShoppingNoteHomeScreen({Key? key}) : super(key: key);
@@ -63,9 +64,18 @@ class _ShoppingNoteHomeScreenState extends State<ShoppingNoteHomeScreen> {
                 child: Image.asset(AssetsPath.appLogoPNG,height: 24,errorBuilder: (_,__,___){return const Icon(Icons.image);},)),
             const SizedBox(width: 10,),
             const Expanded(
-              child: Text(
-                "Shopping Notes",
-                style: TextStyle(fontSize: 23, color: Colors.yellow),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Bachelor Notes",
+                    style: TextStyle(fontSize: 20, color: Colors.yellow),
+                  ),
+                  Text(
+                    "Shopping Notepad",
+                    style: TextStyle(fontSize: 8, color: Colors.yellow),
+                  ),
+                ],
               ),
             ),
           ],
@@ -283,6 +293,9 @@ class _ShoppingNoteHomeScreenState extends State<ShoppingNoteHomeScreen> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(100)
+        ),
         backgroundColor: Colors.amber,
         onPressed: () {
           Get.to(() => const AddShoppingNoteScreen());
@@ -387,7 +400,7 @@ class _ShoppingNoteHomeScreenState extends State<ShoppingNoteHomeScreen> {
                   children: [
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.yellowColor,
+                        backgroundColor: Colors.white60,
                       ),
                       onPressed: () {
                         _firstDateTEController.clear();
@@ -405,7 +418,7 @@ class _ShoppingNoteHomeScreenState extends State<ShoppingNoteHomeScreen> {
 
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.green,
+                        backgroundColor: AppColors.yellowColor,
                       ),
                       onPressed: () {
                         DateTime? parseDate(String date) {
@@ -435,20 +448,11 @@ class _ShoppingNoteHomeScreenState extends State<ShoppingNoteHomeScreen> {
                               Navigator.pop(context);
                             });
                           } else {
-                            Get.snackbar(
-                              'Invalid date range',
-                              'Please make sure the first date is less than last date.',
-                              colorText: AppColors.titleColor,
-                              backgroundColor: Colors.red.withOpacity(0.7),
-                            );
+                            AppToast.showWrongToast('Invalid date range.');
                           }
                         } else {
-                          Get.snackbar(
-                            'Date field is Blank',
-                            'Please fill blank field with valid date.',
-                            colorText: AppColors.titleColor,
-                            backgroundColor: Colors.red.withOpacity(0.7),
-                          );
+                          AppToast.showWrongToast('Date field is Blank.');
+
                         }
                       },
                       child: const Text("Submit"),

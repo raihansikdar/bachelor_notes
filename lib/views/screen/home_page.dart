@@ -1,9 +1,9 @@
+import 'package:bachelor_notes/views/screen/shopping_note_home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:get/get.dart';
 import 'package:bachelor_notes/controller/my_drawer_controller.dart';
 import 'package:bachelor_notes/views/screen/profile_screen.dart';
-import 'package:bachelor_notes/views/screen/bachelor_notes_home_screen.dart';
 
 class HomePage extends GetView<MyDrawerController> {
   const HomePage({super.key});

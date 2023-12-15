@@ -1,18 +1,16 @@
 import 'dart:async';
 
 
+import 'package:bachelor_notes/controller/update_shopping_note_controller.dart';
+import 'package:bachelor_notes/utils/app%20toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 import 'package:get/get.dart';
-import 'package:bachelor_notes/controller/add_shoping_data_controller.dart';
 import 'package:bachelor_notes/controller/fetch_shopping_data_controller.dart';
-import 'package:bachelor_notes/controller/update_bachelor_notes_controller.dart';
 import 'package:bachelor_notes/utils/app_colors.dart';
 import 'package:bachelor_notes/utils/custom_size_extension.dart';
-import 'package:bachelor_notes/views/screen/bachelor_notes_home_screen.dart';
-
-import '../../utils/assets_path.dart';
 
 class UpdateShoppingNoteScreen extends StatefulWidget {
   final int id;
@@ -120,7 +118,14 @@ class _UpdateShoppingNoteScreenState extends State<UpdateShoppingNoteScreen> {
               resizeToAvoidBottomInset: true,
               appBar: AppBar(
                 backgroundColor: AppColors.appBackgroundColor,
+                leading: GestureDetector(
+                  onTap:(){
+                    Navigator.pop(context);
+                  },
+                  child: Icon(Icons.arrow_back_ios,color: AppColors.yellowColor,),
+                ),
                 title: const Text("Update Shopping Notes", style: TextStyle(fontSize: 18.0,letterSpacing: 0.5, color: Colors.yellow),),
+                titleSpacing: 0.0,
                 actions: [
                   GetBuilder<FetchShoppingDataController>(
                       builder: (_fetchShoppingDataController) {
@@ -134,14 +139,15 @@ class _UpdateShoppingNoteScreenState extends State<UpdateShoppingNoteScreen> {
                             _capitalTEController.clear();
                             result = 0.00;
                             remain = 0.00;
-                              Get.snackbar("Successful", "Notes have been deleted",colorText:Colors.white, backgroundColor: Colors.green.withOpacity(0.7),);
+
+                              AppToast.showNormalToast(AppToast.deleted);
 
                             Future.delayed(const Duration(seconds: 2)).then((value) {
                               Navigator.pop(context);
                               Get.find<FetchShoppingDataController>().fetchData();
                             });
                           }else{
-                            Get.snackbar("Failed", "Notes not deleted",colorText:Colors.white, backgroundColor: Colors.red.withOpacity(0.7),);
+                            AppToast.showWrongToast(AppToast.notDeleted);
                           }
                         }, child: Icon(Icons.delete,color: AppColors.yellowColor,));
                       }
@@ -177,14 +183,15 @@ class _UpdateShoppingNoteScreenState extends State<UpdateShoppingNoteScreen> {
                     );
 
                     if(response == true){
-                      Get.snackbar("Successful", "Notes have been Updated",colorText:Colors.white, backgroundColor: Colors.green.withOpacity(0.7),);
+                      AppToast.showNormalToast(AppToast.updated);
+
                       Future.delayed(const Duration(seconds: 2)).then((value) {
                         Navigator.pop(context);
                         Get.find<FetchShoppingDataController>().fetchData();
                       });
 
                     }else{
-                      Get.snackbar("Failed", "Notes not updated",colorText:Colors.white, backgroundColor: Colors.red.withOpacity(0.7),);
+                      AppToast.showWrongToast(AppToast.notUpdated);
                     }
                   }, child: const Icon(Icons.check,color: Colors.white60,)),
                   const SizedBox(width: 20,)

@@ -1,16 +1,14 @@
 import 'dart:async';
 
 
+import 'package:bachelor_notes/utils/app%20toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:get/get.dart';
-import 'package:bachelor_notes/controller/add_shoping_data_controller.dart';
 import 'package:bachelor_notes/controller/fetch_shopping_data_controller.dart';
-import 'package:bachelor_notes/controller/update_bachelor_notes_controller.dart';
 import 'package:bachelor_notes/utils/app_colors.dart';
 import 'package:bachelor_notes/utils/custom_size_extension.dart';
-import 'package:bachelor_notes/views/screen/bachelor_notes_home_screen.dart';
 
 import '../../utils/assets_path.dart';
 
@@ -97,9 +95,14 @@ class _RestoreShoppingNoteScreenState extends State<RestoreShoppingNoteScreen> {
               appBar: AppBar(
                 backgroundColor: AppColors.appBackgroundColor,
 
-
+                leading: GestureDetector(
+                  onTap:(){
+                    Navigator.pop(context);
+                  },
+                  child: Icon(Icons.arrow_back_ios,size: 18.0,color: AppColors.yellowColor,),
+                ),
+                titleSpacing: 0.0,
                 title: const Text("Restore Notes", style: TextStyle(fontSize: 18.0,letterSpacing: 0.5, color: Colors.yellow),),
-
 
                 actions: [
                          GestureDetector(onTap: ()async{
@@ -110,13 +113,16 @@ class _RestoreShoppingNoteScreenState extends State<RestoreShoppingNoteScreen> {
                             _itemTitleControllerList.clear();
                             _priceControllerList.clear();
                             totalCost = 0.00;
-                            Get.snackbar("Successful", "Notes have been deleted permanently",colorText:Colors.white,backgroundColor: Colors.green.withOpacity(0.7));
+
+
+                            AppToast.showWrongToast(AppToast.permanentlyDelete);
+
                             Future.delayed(const Duration(seconds: 2)).then((value) {
                               Navigator.pop(context);
                               Get.find<FetchShoppingDataController>().fetchData();
                             });
                           }else{
-                            Get.snackbar("Failed", "Notes not deleted",colorText:Colors.white,backgroundColor: Colors.red.withOpacity(0.7));
+                            AppToast.showWrongToast(AppToast.notPermanentlyDelete);
                           }
                         }, child: Icon(Icons.delete,color: AppColors.yellowColor,)),
 
@@ -146,15 +152,15 @@ class _RestoreShoppingNoteScreenState extends State<RestoreShoppingNoteScreen> {
                     );
 
                     if(response == true){
+                      AppToast.showNormalToast(AppToast.restored);
 
-                      Get.snackbar("Successful", "Notes have been Restored",colorText:Colors.white,backgroundColor: Colors.green.withOpacity(0.7));
                       Future.delayed(const Duration(seconds: 2)).then((value) {
                         Navigator.pop(context);
                         Get.find<FetchShoppingDataController>().fetchShoppingRecycleBinData();
                       });
 
                     }else{
-                      Get.snackbar("Failed", "Notes not Restored",colorText:Colors.white,backgroundColor: Colors.red.withOpacity(0.7));
+                      AppToast.showWrongToast(AppToast.notRestored);
                     }
                   }, child: const Icon(Icons.restore,color: Colors.white60,)),
                   const SizedBox(width: 20,)

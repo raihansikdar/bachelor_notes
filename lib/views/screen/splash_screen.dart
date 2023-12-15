@@ -32,7 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
           Center(child: Image.asset(AssetsPath.appLogoPNG,height: 100,width: 100,)),
           Padding(
             padding: const EdgeInsets.only(left: 6.0,top: 4),
-            child: Text("Shopping Notes",style: TextStyle(color: AppColors.yellowColor,fontSize: 18,fontWeight: FontWeight.w500),),
+            child: Text("Bachelor Notes",style: TextStyle(color: AppColors.yellowColor,fontSize: 18,fontWeight: FontWeight.w500),),
           )
         ],
       ),

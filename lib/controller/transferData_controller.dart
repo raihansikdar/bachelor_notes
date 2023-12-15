@@ -2,8 +2,8 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shopping_notes/controller/fetch_shopping_data_controller.dart';
-import 'package:shopping_notes/database/database_helper.dart';
+import 'package:bachelor_notes/controller/fetch_shopping_data_controller.dart';
+import 'package:bachelor_notes/database/database_helper.dart';
 import 'package:sqflite/sqflite.dart';
 
 class TransferDataController extends GetxController {

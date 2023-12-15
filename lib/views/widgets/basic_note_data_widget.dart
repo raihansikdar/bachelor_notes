@@ -1,3 +1,4 @@
+import 'package:bachelor_notes/utils/custom_size_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:bachelor_notes/model/note_model.dart';
 import 'package:bachelor_notes/utils/app_colors.dart';
@@ -72,7 +73,7 @@ class BasicNoteDataWidget extends StatelessWidget {
                     maxLines: 5,
                     overflow: TextOverflow.ellipsis,
                     style:TextStyle(
-                      fontSize: 15.0,
+                      fontSize: 15.rSp,
                       fontWeight: FontWeight.w500,
                       letterSpacing: 0.5,
                       wordSpacing: 0.3,

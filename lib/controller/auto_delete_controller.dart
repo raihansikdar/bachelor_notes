@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:get/get.dart';
-import 'package:shopping_notes/controller/fetch_data_controller.dart';
+import 'package:bachelor_notes/controller/fetch_data_controller.dart';
 
 class AutoDeleteController extends GetxService {
   late Timer _autoDeleteTimer;

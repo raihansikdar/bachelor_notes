@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:bachelor_notes/controller/auto_delete_controller.dart';
 import 'package:bachelor_notes/controller/fetch_data_controller.dart';
+import 'package:bachelor_notes/utils/app%20toast.dart';
 import 'package:bachelor_notes/utils/app_colors.dart';
 import 'package:bachelor_notes/utils/assets_path.dart';
 import 'package:bachelor_notes/views/screen/restore_note_screen.dart';
@@ -54,13 +55,15 @@ class _RecycleBinScreenState extends State<RecycleBinScreen> {
       backgroundColor: const Color.fromARGB(255, 44, 32, 32),
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 44, 32, 32),
-        title: const Text("Recycle bin", style: TextStyle(fontSize: 20.0,letterSpacing: 0.5, color:Colors.yellow),),
         leading: GestureDetector(
-            onTap: (){
-              Get.find<FetchDataController>().fetchData();
-              Navigator.pop(context);
-            },
-            child: const Icon(Icons.arrow_back)),
+          onTap:(){
+            Get.find<FetchDataController>().fetchData();
+            Navigator.pop(context);
+          },
+          child: Icon(Icons.arrow_back_ios,size: 18.0,color: AppColors.yellowColor,),
+        ),
+        titleSpacing: 0.0,
+        title: const Text("Recycle bin", style: TextStyle(fontSize: 20.0,letterSpacing: 0.5, color:Colors.yellow),),
       ),
       body: Padding(
         padding: const EdgeInsets.all(12.0),
@@ -68,8 +71,7 @@ class _RecycleBinScreenState extends State<RecycleBinScreen> {
           children: [
             GestureDetector(
               onTap: (){
-                Get.find<FetchDataController>().trashNotesList.isEmpty ?
-                    Get.snackbar("Empty", "Recycle bin is already empty",colorText: Colors.white,icon: const Icon(Icons.delete_sweep,color: Colors.white,size: 30,))
+                Get.find<FetchDataController>().trashNotesList.isEmpty ? AppToast.showNormalToast('Recycle bin is already empty.')
                     :  showDialog(context: context, builder: (context){
 
                       return AlertDialog(

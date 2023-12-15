@@ -1,3 +1,4 @@
+import 'package:bachelor_notes/utils/app%20toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
@@ -144,7 +145,7 @@ class ProfileScreen extends GetView<MyDrawerController> {
                     return GestureDetector(
                         onTap: (){
                           Get.find<FetchShoppingDataController>().searchShoppingNoteList.isEmpty ?
-                          Get.snackbar("Empty", "There is no Notes.",colorText: Colors.white,icon: const Icon(Icons.delete_sweep,color: Colors.white,size: 30,))
+                         AppToast.showNormalToast('There is no notes.')
                               : showDialog(context: context, builder: (context){
 
                             return AlertDialog(
@@ -160,11 +161,11 @@ class ProfileScreen extends GetView<MyDrawerController> {
                                 ElevatedButton(onPressed: () async{
                                   final response = await _transferDataController.transferData();
                                   if(response == true){
-                                    Get.snackbar("Successful", "Notes have been deleted",colorText:Colors.white,backgroundColor: Colors.green.withOpacity(0.7));
+                                    AppToast.showNormalToast('All notes have been deleted permanently');
                                     Navigator.pop(context);
                                     Get.find<FetchShoppingDataController>().fetchData();
                                   }else{
-                                    Get.snackbar("Failed", "Notes not deleted",colorText:Colors.white,backgroundColor: Colors.red.withOpacity(0.7));
+                                    AppToast.showNormalToast('All notes have not been deleted permanently');
                                   }
                                 }, child: const Text("Delete")),
                               ],

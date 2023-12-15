@@ -1,10 +1,11 @@
 import 'dart:async';
 import 'dart:developer';
 
+import 'package:bachelor_notes/model/shopping_note_model.dart';
+import 'package:bachelor_notes/model/shopping_note_recyclebin_model.dart';
+import 'package:bachelor_notes/utils/app%20toast.dart';
 import 'package:flutter/material.dart';
-import 'package:shopping_notes/database/database_helper.dart';
-import 'package:shopping_notes/model/shopping_note_model.dart';
-import 'package:shopping_notes/model/shopping_note_recyclebin_model.dart';
+import 'package:bachelor_notes/database/database_helper.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
@@ -15,8 +16,7 @@ class FetchShoppingDataController extends GetxController {
   ShoppingNoteModel _shoppingNoteModel = ShoppingNoteModel();
 
   List<ShoppingNoteRecycleBinModel> _shoppingNoteRecycleBinList = [];
-  ShoppingNoteRecycleBinModel _shoppingNoteRecycleBinModel =
-      ShoppingNoteRecycleBinModel();
+  ShoppingNoteRecycleBinModel _shoppingNoteRecycleBinModel = ShoppingNoteRecycleBinModel();
 
   bool get isLoading => _isLoading;
   List<ShoppingNoteModel> get shoppingNoteList => _shoppingNoteList;
@@ -226,9 +226,7 @@ class FetchShoppingDataController extends GetxController {
       _isLoading = false;
       if (response > 0) {
         _shoppingNoteRecycleBinList.clear(); // Clear the local list
-        Get.snackbar("Successful", "All Shopping notes have been deleted",
-            colorText: Colors.white,
-            backgroundColor: Colors.green.withOpacity(0.7));
+        AppToast.showNormalToast('All Shopping notes have been deleted.');
         update();
         return true;
       } else {

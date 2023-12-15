@@ -1,7 +1,7 @@
 import 'dart:developer';
 
-import 'package:shopping_notes/database/database_helper.dart';
-import 'package:shopping_notes/model/note_model.dart';
+import 'package:bachelor_notes/database/database_helper.dart';
+import 'package:bachelor_notes/model/note_model.dart';
 import 'package:get/get.dart';
 
 class AddDataController extends GetxController {

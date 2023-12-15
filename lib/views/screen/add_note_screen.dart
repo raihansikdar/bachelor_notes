@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bachelor_notes/controller/fetch_data_controller.dart';
 import 'package:bachelor_notes/controller/add_data_controller.dart';
+import 'package:bachelor_notes/utils/app%20toast.dart';
 import 'package:bachelor_notes/utils/app_colors.dart';
 import 'package:bachelor_notes/utils/custom_size_extension.dart';
 import 'package:flutter/material.dart';
@@ -60,6 +61,13 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
           backgroundColor: const Color.fromARGB(255, 44, 32, 32),
           appBar: AppBar(
             backgroundColor: const Color.fromARGB(255, 44, 32, 32),
+            leading: GestureDetector(
+              onTap:(){
+                Navigator.pop(context);
+              },
+              child: Icon(Icons.arrow_back_ios,size: 18.0,color: AppColors.yellowColor,),
+            ),
+            titleSpacing: 0.0,
             title: const Text(
               "Add Notes",
               style: TextStyle(
@@ -77,23 +85,15 @@ class _AddNoteScreenState extends State<AddNoteScreen> {
                         note: _noteTEController.text.trim(),
                         time: _time.trim());
                     if (response == true) {
-                      Get.snackbar(
-                        "Successful",
-                        "Notes have been Added",
-                        colorText: Colors.white,
-                        backgroundColor: Colors.green.withOpacity(0.7),
-                      );
+
+                      AppToast.showNormalToast(AppToast.added);
+
                       Future.delayed(const Duration(seconds: 2)).then((value) {
                         Navigator.pop(context);
                         Get.find<FetchDataController>().fetchData();
                       });
                     } else {
-                      Get.snackbar(
-                        "Failed",
-                        "Notes not Added",
-                        colorText: Colors.white,
-                        backgroundColor: Colors.red.withOpacity(0.7),
-                      );
+                      AppToast.showNormalToast(AppToast.notAdded);
                     }
                   },
                   child: const Icon(
