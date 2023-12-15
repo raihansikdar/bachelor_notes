@@ -28,7 +28,7 @@ class ShoppingNoteHomeScreen extends StatefulWidget {
 
 class _ShoppingNoteHomeScreenState extends State<ShoppingNoteHomeScreen> {
 
-  TextEditingController _dateTEController = TextEditingController();
+  final TextEditingController _dateTEController = TextEditingController();
   final _debouncer = Debouncer(milliseconds: 100);
   bool _changeText = false;
   bool _emptyPic = false;
@@ -219,7 +219,7 @@ class _ShoppingNoteHomeScreenState extends State<ShoppingNoteHomeScreen> {
                 text: const TextSpan(
                   children: [
                     TextSpan(
-                        text: "Welcome to Shopping Notes.",
+                        text: "Welcome to Bachelor Notes.",
                         style: TextStyle(
                           fontSize: 12.0,
                           fontWeight: FontWeight.w400,

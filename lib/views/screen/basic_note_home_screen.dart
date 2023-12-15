@@ -21,7 +21,7 @@ class BasicNoteHomeScreen extends StatefulWidget {
 }
 
 class _BasicNoteHomeScreenState extends State<BasicNoteHomeScreen> {
-  TextEditingController _dateTEController = TextEditingController();
+  final TextEditingController _dateTEController = TextEditingController();
   final _debouncer = Debouncer(milliseconds: 100);
   bool _changeText = false;
   bool _emptyPic = false;
@@ -84,7 +84,6 @@ class _BasicNoteHomeScreenState extends State<BasicNoteHomeScreen> {
         actions: [
           GestureDetector(
             onTap: () {
-              //Get.offAll(() => const ShoppingNoteHomeScreen());
              Navigator.pop(context);
             },
             child: Icon(Icons.shopping_cart, color: AppColors.yellowColor, size: 20),
@@ -200,7 +199,7 @@ class _BasicNoteHomeScreenState extends State<BasicNoteHomeScreen> {
                   text: const TextSpan(
                     children: [
                        TextSpan(
-                        text: "Welcome to Shopping Notes.",
+                        text: "Welcome to Bachelor Notes.",
                         style: TextStyle(
                             fontSize: 12.0,
                             fontWeight: FontWeight.w400,

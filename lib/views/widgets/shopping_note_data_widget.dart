@@ -44,7 +44,7 @@ class ShoppingNoteDataWidget extends StatelessWidget {
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
                                   style:TextStyle(
-                                    fontSize: 17.rSp,
+                                    fontSize: 16.rSp,
                                     fontWeight: FontWeight.w600,
                                     letterSpacing: 0.5,
                                     color: AppColors.titleColor,
@@ -89,7 +89,7 @@ class ShoppingNoteDataWidget extends StatelessWidget {
                                   overflow: TextOverflow.ellipsis,
                                  // maxLines: 1,
                                   style: TextStyle(
-                                    fontSize: 16.0,
+                                    fontSize: 16.rSp,
                                     fontWeight: FontWeight.w600,
                                     letterSpacing: 0.5,
                                     color: AppColors.textfieldColor,
@@ -101,7 +101,7 @@ class ShoppingNoteDataWidget extends StatelessWidget {
                                   overflow: TextOverflow.ellipsis,
                                  // maxLines: 1,
                                   style: TextStyle(
-                                    fontSize: 16.0,
+                                    fontSize: 16.rSp,
                                     fontWeight: FontWeight.w600,
                                     letterSpacing: 0.5,
                                     color: AppColors.textfieldColor,
@@ -118,7 +118,7 @@ class ShoppingNoteDataWidget extends StatelessWidget {
                                   overflow: TextOverflow.ellipsis,
                                   ///maxLines: 1,
                                   style: TextStyle(
-                                    fontSize: 16.0,
+                                    fontSize: 16.rSp,
                                     fontWeight: FontWeight.w600,
                                     letterSpacing: 0.5,
                                     color: AppColors.textfieldColor,
@@ -129,7 +129,7 @@ class ShoppingNoteDataWidget extends StatelessWidget {
                                   overflow: TextOverflow.ellipsis,
                                   //maxLines: 1,
                                   style: TextStyle(
-                                    fontSize: 16.0,
+                                    fontSize: 16.rSp,
                                     fontWeight: FontWeight.w600,
                                     letterSpacing: 0.5,
                                     color: AppColors.textfieldColor,

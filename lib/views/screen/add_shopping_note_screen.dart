@@ -23,15 +23,15 @@ class AddShoppingNoteScreen extends StatefulWidget {
 }
 
 class _AddShoppingNoteScreenState extends State<AddShoppingNoteScreen> {
-  List<TextEditingController> _itemTitleControllerList = [TextEditingController()];
-  List<TextEditingController> _priceControllerList = [TextEditingController()];
+  final List<TextEditingController> _itemTitleControllerList = [TextEditingController()];
+  final List<TextEditingController> _priceControllerList = [TextEditingController()];
 
 
-  TextEditingController _dateTEController = TextEditingController();
-  TextEditingController _titleTEController = TextEditingController();
-  TextEditingController _capitalTEController = TextEditingController();
+  final TextEditingController _dateTEController = TextEditingController();
+  final TextEditingController _titleTEController = TextEditingController();
+  final TextEditingController _capitalTEController = TextEditingController();
 
-  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   double result = 0.00;
   double remain = 0.00;
