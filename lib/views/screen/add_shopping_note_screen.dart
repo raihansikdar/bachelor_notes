@@ -1,11 +1,9 @@
 import 'dart:async';
-import 'dart:developer';
 
 
 import 'package:bachelor_notes/utils/app%20toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:bachelor_notes/controller/add_shoping_data_controller.dart';
@@ -13,7 +11,6 @@ import 'package:bachelor_notes/controller/fetch_shopping_data_controller.dart';
 import 'package:bachelor_notes/utils/app_colors.dart';
 import 'package:bachelor_notes/utils/custom_size_extension.dart';
 
-import '../../utils/assets_path.dart';
 
 class AddShoppingNoteScreen extends StatefulWidget {
   const AddShoppingNoteScreen({Key? key}) : super(key: key);
@@ -50,7 +47,7 @@ class _AddShoppingNoteScreenState extends State<AddShoppingNoteScreen> {
  }
 
  double calculateRemainder(){
-   double totalCost = 0.0;
+  
    double remainder = 0.00;
    String capitalText = _capitalTEController.text.trim();
 
@@ -243,7 +240,7 @@ class _AddShoppingNoteScreenState extends State<AddShoppingNoteScreen> {
                     ),
                     TextFormField(
                       controller: _titleTEController,
-                      inputFormatters: [LengthLimitingTextInputFormatter(50)],
+                      //inputFormatters: [LengthLimitingTextInputFormatter(50)],
 
                       cursorColor: AppColors.yellowColor,
                       style: const TextStyle(color: Colors.white60),
@@ -355,7 +352,7 @@ class _AddShoppingNoteScreenState extends State<AddShoppingNoteScreen> {
                                      hintText: 'Item title',
                                      hintStyle: TextStyle(color: AppColors.titleColor),
                                      border: InputBorder.none,
-                                   contentPadding: const EdgeInsets.symmetric(vertical: 4,horizontal: 12.0)
+                                   contentPadding: const EdgeInsets.symmetric(vertical: 2,horizontal: 12.0)
                                  ),
                                  validator: (String? value){
                                    if(value?.isEmpty ?? true){
@@ -391,7 +388,7 @@ class _AddShoppingNoteScreenState extends State<AddShoppingNoteScreen> {
                                          hintText:'tk',
                                        hintStyle: TextStyle(color: AppColors.titleColor),
                                        border: InputBorder.none,
-                                         contentPadding: const EdgeInsets.symmetric(vertical: 4,horizontal: 12.0)
+                                         contentPadding: const EdgeInsets.symmetric(vertical: 2,horizontal: 12.0)
                                      ),
                                     // enabled: isCapitalProvided,  // Set the enabled property based on isCapitalProvided
 
@@ -505,6 +502,9 @@ class _AddShoppingNoteScreenState extends State<AddShoppingNoteScreen> {
 
 
           floatingActionButton:FloatingActionButton(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(100)
+            ),
             backgroundColor: Colors.amber,
             onPressed: (){
 

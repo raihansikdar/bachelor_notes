@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:scroll_loop_auto_scroll/scroll_loop_auto_scroll.dart';
 import 'package:bachelor_notes/controller/fetch_monthly_expanse_review_controller.dart';
 import 'package:bachelor_notes/utils/app_colors.dart';

@@ -3,6 +3,7 @@ import 'package:bachelor_notes/controller/fetch_data_controller.dart';
 import 'package:bachelor_notes/controller/my_drawer_controller.dart';
 import 'package:bachelor_notes/utils/app_colors.dart';
 import 'package:bachelor_notes/utils/assets_path.dart';
+import 'package:bachelor_notes/utils/custom_size_extension.dart';
 import 'package:bachelor_notes/utils/debouncer.dart';
 import 'package:bachelor_notes/views/screen/add_note_screen.dart';
 import 'package:bachelor_notes/views/screen/recyclebin_screen.dart';
@@ -64,17 +65,17 @@ class _BasicNoteHomeScreenState extends State<BasicNoteHomeScreen> {
                 },
                 child: Image.asset(AssetsPath.appLogoPNG,height: 24,errorBuilder: (_,__,___){return const Icon(Icons.image);},)),
             const SizedBox(width: 10,),
-             const Expanded(
+              Expanded(
                child: Column(
                  crossAxisAlignment: CrossAxisAlignment.start,
                  children: [
                    Text(
                      "Bachelor Notes",
-                     style: TextStyle(fontSize: 20, color: Colors.yellow),
+                     style: TextStyle(fontSize: 20.rSp, color: Colors.yellow,fontWeight: FontWeight.w600),
                    ),
                    Text(
                      "General Notepad",
-                     style: TextStyle(fontSize: 8, color: Colors.yellow),
+                     style: TextStyle(fontSize: 10.rSp, color: Colors.yellow),
                    ),
                  ],
                ),
@@ -88,14 +89,14 @@ class _BasicNoteHomeScreenState extends State<BasicNoteHomeScreen> {
             },
             child: Icon(Icons.shopping_cart, color: AppColors.yellowColor, size: 20),
           ),
-          const SizedBox(width: 30),
+          SizedBox(width: 30.rw),
           GestureDetector(
             onTap: () {
               Get.to(() => const RecycleBinScreen());
             },
             child: Icon(Icons.auto_delete, color: AppColors.yellowColor, size: 20),
           ),
-          const SizedBox(width: 20)
+          SizedBox(width: 30.rw)
         ],
       ),
       body: Padding(
@@ -106,7 +107,7 @@ class _BasicNoteHomeScreenState extends State<BasicNoteHomeScreen> {
              children: [
                Expanded(
                  child: SizedBox(
-                   height: 56.0,
+                   height: 50.rSp,
                    child: TextFormField(
                      controller: _dateTEController,
                      onChanged: (String value) {
@@ -145,8 +146,8 @@ class _BasicNoteHomeScreenState extends State<BasicNoteHomeScreen> {
                          borderSide: const BorderSide(
                              color: AppColors.textFormFieldBorderSideColor, width: 2),
                        ),
-                       hintStyle:  const TextStyle(
-                           fontSize: 16.0,
+                       hintStyle:  TextStyle(
+                           fontSize: 16.rSp,
                            fontWeight: FontWeight.w500,
                            letterSpacing: 0.5,
                            color: Colors.white60
@@ -233,8 +234,8 @@ class _BasicNoteHomeScreenState extends State<BasicNoteHomeScreen> {
                    return  Center(
                       child: _emptyPic ? Column(
                         children: [
-                          const SizedBox(height: 50,),
-                          Image.asset(AssetsPath.noResultPNG,width: 150,),
+                           SizedBox(height: 50.rh,),
+                          Image.asset(AssetsPath.noResultPNG,width: 150.rw,),
                         ],
                       ) : null,
                     );
@@ -268,6 +269,9 @@ class _BasicNoteHomeScreenState extends State<BasicNoteHomeScreen> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(100)
+        ),
         backgroundColor: Colors.amber,
         onPressed: () {
           Get.to(() => const AddNoteScreen());
@@ -292,8 +296,10 @@ class _BasicNoteHomeScreenState extends State<BasicNoteHomeScreen> {
       // Trigger onChanged manually
       if (formattedDate.isNotEmpty) {
         _changeText = true;
+        _emptyPic = true;
       } else {
         _changeText = false;
+        _emptyPic = false;
       }
       setState(() {});
 

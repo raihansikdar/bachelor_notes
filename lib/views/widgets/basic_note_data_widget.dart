@@ -6,7 +6,8 @@ import 'package:bachelor_notes/utils/app_colors.dart';
 class BasicNoteDataWidget extends StatelessWidget {
   final NoteModel basicNoteData;
   const BasicNoteDataWidget({
-    super.key, required this.basicNoteData,
+    super.key,
+    required this.basicNoteData,
   });
 
   @override
@@ -21,7 +22,8 @@ class BasicNoteDataWidget extends StatelessWidget {
                 color: AppColors.textFormFieldBorderSideColor, width: 2.0),
           ),
           child: Padding(
-            padding: const EdgeInsets.only(top: 10.0,bottom:10,left: 10,right: 10),
+            padding: const EdgeInsets.only(
+                top: 10.0, bottom: 10, left: 10, right: 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -34,7 +36,7 @@ class BasicNoteDataWidget extends StatelessWidget {
                           basicNoteData.title ?? '',
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
-                          style:TextStyle(
+                          style: TextStyle(
                             fontSize: 17.0,
                             fontWeight: FontWeight.bold,
                             letterSpacing: 0.5,
@@ -45,13 +47,18 @@ class BasicNoteDataWidget extends StatelessWidget {
                     ),
                   ],
                 ),
-
                 const SizedBox(height: 3.0),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Icon(Icons.calendar_month,color: AppColors.textfieldColor,size: 16.0,),
-                    const SizedBox(width: 4.0,),
+                    Icon(
+                      Icons.calendar_month,
+                      color: AppColors.textfieldColor,
+                      size: 16.0,
+                    ),
+                    const SizedBox(
+                      width: 4.0,
+                    ),
                     Text(
                       basicNoteData.date ?? ' ',
                       overflow: TextOverflow.ellipsis,
@@ -72,7 +79,7 @@ class BasicNoteDataWidget extends StatelessWidget {
                     textAlign: TextAlign.justify,
                     maxLines: 5,
                     overflow: TextOverflow.ellipsis,
-                    style:TextStyle(
+                    style: TextStyle(
                       fontSize: 15.rSp,
                       fontWeight: FontWeight.w500,
                       letterSpacing: 0.5,
@@ -90,15 +97,19 @@ class BasicNoteDataWidget extends StatelessWidget {
             bottom: 8.5,
             child: Row(
               children: [
-                Icon(Icons.access_time_filled_rounded,size: 14.0,color: AppColors.yellowColor,),
+                Icon(
+                  Icons.access_time_filled_rounded,
+                  size: 14.0,
+                  color: AppColors.yellowColor,
+                ),
                 const SizedBox(width: 4.0),
                 Text(
                   basicNoteData.time ?? '',
-                  style:TextStyle(
+                  style: TextStyle(
                     fontSize: 12.0,
                     fontWeight: FontWeight.w600,
                     letterSpacing: 0.5,
-                    color:AppColors.yellowColor,
+                    color: AppColors.yellowColor,
                   ),
                 ),
               ],

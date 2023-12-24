@@ -28,14 +28,14 @@ class UpdateShoppingNoteScreen extends StatefulWidget {
 }
 
 class _UpdateShoppingNoteScreenState extends State<UpdateShoppingNoteScreen> {
-  List<TextEditingController> _itemTitleControllerList = [TextEditingController()];
-  List<TextEditingController> _priceControllerList = [TextEditingController()];
+   List<TextEditingController> _itemTitleControllerList = [TextEditingController()];
+   List<TextEditingController> _priceControllerList = [TextEditingController()];
 
-  TextEditingController _dateTEController = TextEditingController();
-  TextEditingController _titleTEController = TextEditingController();
-  TextEditingController _capitalTEController = TextEditingController();
+  final TextEditingController _dateTEController = TextEditingController();
+  final TextEditingController _titleTEController = TextEditingController();
+  final TextEditingController _capitalTEController = TextEditingController();
 
-  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   double result = 0.0;
   double remain = 0.00;
@@ -543,6 +543,9 @@ class _UpdateShoppingNoteScreenState extends State<UpdateShoppingNoteScreen> {
 
 
               floatingActionButton:FloatingActionButton(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(100)
+                ),
                 backgroundColor: Colors.amber,
                 onPressed: (){
                 _itemTitleControllerList.add(TextEditingController());
@@ -557,14 +560,15 @@ class _UpdateShoppingNoteScreenState extends State<UpdateShoppingNoteScreen> {
     );
   }
   Future<void>_selectDate() async{
-    DateTime? _picker = await showDatePicker(context: context,
+    DateTime? _picker = await showDatePicker(
+      context: context,
       initialDate: DateTime.now(),
       firstDate: DateTime(2020),
       lastDate: DateTime(2100),
     );
     if(_picker != null){
-      String formatedDate = DateFormat("dd-MMM-yyyy").format(_picker);
-      _dateTEController.text = formatedDate.toString();
+      String formattedDate = DateFormat("dd-MMM-yyyy").format(_picker);
+      _dateTEController.text = formattedDate.toString();
       setState(() {});
     }
   }

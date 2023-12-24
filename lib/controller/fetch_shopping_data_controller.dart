@@ -34,17 +34,13 @@ class FetchShoppingDataController extends GetxController {
       update();
 
       final db = await DatabaseHelper().database;
-      final response = await db.query('shoppingNotesTable',
-          orderBy: "date DESC,id DESC"); //orderBy: "id DESC"
+      final response = await db.query('shoppingNotesTable', orderBy: "date DESC,id DESC"); //orderBy: "id DESC"
 
       _isLoading = false;
       if (response.isNotEmpty) {
-        _shoppingNoteList = response
-            .map((shoppingData) => ShoppingNoteModel.fromJson(shoppingData))
-            .toList();
+        _shoppingNoteList = response.map((shoppingData) => ShoppingNoteModel.fromJson(shoppingData)).toList();
 
         _searchShoppingNoteList = _shoppingNoteList;
-        log(_searchShoppingNoteList.toString());
         update();
         return true;
       } else {
@@ -81,8 +77,7 @@ class FetchShoppingDataController extends GetxController {
   bool _isDateMatch(String? shoppingDate, String searchValue) {
     try {
       DateTime searchDateTime = DateFormat("dd-MMM-yyyy").parse(searchValue);
-      DateTime shoppingDateTime =
-          DateFormat("dd-MMM-yyyy").parse(shoppingDate!);
+      DateTime shoppingDateTime = DateFormat("dd-MMM-yyyy").parse(shoppingDate!);
       return searchDateTime.isAtSameMomentAs(shoppingDateTime);
     } catch (e) {
       return false;

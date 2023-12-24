@@ -11,29 +11,35 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 class UpdateNoteScreen extends StatefulWidget {
-   final int id;
-   final String date;
-   final String title;
-   final String note ;
-  const UpdateNoteScreen({Key? key,required this.id, required this.date, required this.title, required this.note}) : super(key: key);
+  final int id;
+  final String date;
+  final String title;
+  final String note;
+  const UpdateNoteScreen(
+      {Key? key,
+      required this.id,
+      required this.date,
+      required this.title,
+      required this.note})
+      : super(key: key);
 
   @override
   State<UpdateNoteScreen> createState() => _UpdateNoteScreenState();
 }
 
 class _UpdateNoteScreenState extends State<UpdateNoteScreen> {
-  TextEditingController _dateTEController = TextEditingController();
-  TextEditingController _titleTEController = TextEditingController();
-  TextEditingController _noteTEController = TextEditingController();
-  TextEditingController _timeTEController = TextEditingController();
-  GlobalKey<FormState>_formKey = GlobalKey<FormState>();
+  final TextEditingController _dateTEController = TextEditingController();
+  final TextEditingController _titleTEController = TextEditingController();
+  final TextEditingController _noteTEController = TextEditingController();
+
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   TimeOfDay? _selectedTime;
   late String _time;
 
-  void _startClock(){
+  void _startClock() {
     Timer.periodic(const Duration(seconds: 1), (Timer timer) {
-      if(mounted){
+      if (mounted) {
         final DateTime now = DateTime.now();
         _selectedTime = TimeOfDay(hour: now.hour, minute: now.minute);
         _time = _selectedTime?.format(context).toString() ?? 'null';
@@ -62,6 +68,7 @@ class _UpdateNoteScreenState extends State<UpdateNoteScreen> {
 
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -71,68 +78,97 @@ class _UpdateNoteScreenState extends State<UpdateNoteScreen> {
         appBar: AppBar(
           backgroundColor: const Color.fromARGB(255, 44, 32, 32),
           leading: GestureDetector(
-            onTap:(){
+            onTap: () {
               Get.find<FetchDataController>().fetchData();
               Navigator.pop(context);
             },
-            child: Icon(Icons.arrow_back_ios,size: 18.0,color: AppColors.yellowColor,),
+            child: Icon(
+              Icons.arrow_back_ios,
+              size: 18.0,
+              color: AppColors.yellowColor,
+            ),
           ),
-          title: const Text("Update Note", style: TextStyle(fontSize: 20.0,letterSpacing: 0.5, color: Colors.yellow),),
+          title: const Text(
+            "Update Note",
+            style: TextStyle(
+                fontSize: 20.0, letterSpacing: 0.5, color: Colors.yellow),
+          ),
           actions: [
             Row(
               children: [
-            GetBuilder<FetchDataController>(
-                builder: (_fetchDataController) {
-                  return GestureDetector(onTap: ()async{
-                    final response = await _fetchDataController.deleteData(id: widget.id!, time: _time.trim(),deletedDate: DateFormat("dd-MMM-yyyy").format(DateTime.now()));
-                    if(response == true){
-                      _dateTEController.clear();
-                      _titleTEController.clear();
-                      _noteTEController.clear();
+                GetBuilder<FetchDataController>(
+                    builder: (_fetchDataController) {
+                  return GestureDetector(
+                      onTap: () async {
+                        final response = await _fetchDataController.deleteData(
+                            id: widget.id!,
+                            time: _time.trim(),
+                            deletedDate: DateFormat("dd-MMM-yyyy")
+                                .format(DateTime.now()));
+                        if (response == true) {
+                          _dateTEController.clear();
+                          _titleTEController.clear();
+                          _noteTEController.clear();
 
-                      AppToast.showNormalToast(AppToast.deleted);
+                          AppToast.showNormalToast(AppToast.deleted);
 
-                      Future.delayed(const Duration(seconds: 2)).then((value) {
-                        Navigator.pop(context);
-                        Get.find<FetchDataController>().fetchData();
-                      });
-                    }else{
-                      AppToast.showWrongToast(AppToast.notDeleted);
-                    }
-                  }, child: Icon(Icons.delete,color: AppColors.yellowColor,));
-                }
-            ),
+                          Future.delayed(const Duration(seconds: 2))
+                              .then((value) {
+                            Navigator.pop(context);
+                            Get.find<FetchDataController>().fetchData();
+                          });
+                        } else {
+                          AppToast.showWrongToast(AppToast.notDeleted);
+                        }
+                      },
+                      child: Icon(
+                        Icons.delete,
+                        color: AppColors.yellowColor,
+                      ));
+                }),
+                const SizedBox(
+                  width: 20,
+                ),
+                GetBuilder<UpdateDataController>(
+                    builder: (_updateDataController) {
+                  return GestureDetector(
+                      onTap: () async {
+                        if (!_formKey.currentState!.validate()) {
+                          return null;
+                        }
+                        final response = await _updateDataController.updateData(
+                            id: widget.id,
+                            date: _dateTEController.text.trim(),
+                            title: _titleTEController.text.trim(),
+                            note: _noteTEController.text.trim(),
+                            time: _time.trim());
+                        if (response == true) {
+                          AppToast.showNormalToast(AppToast.updated);
 
-            const SizedBox(width: 20,),
-
-            GetBuilder<UpdateDataController>(
-                builder: (_updateDataController) {
-                  return GestureDetector(onTap: () async{
-                    if(!_formKey.currentState!.validate()){
-                      return null;
-                    }
-                    final response = await _updateDataController.updateData(id:widget.id, date: _dateTEController.text.trim(), title: _titleTEController.text.trim(), note: _noteTEController.text.trim(), time: _time.trim());
-                    if(response == true){
-                      AppToast.showNormalToast(AppToast.updated);
-
-
-                      Future.delayed(const Duration(seconds: 2)).then((value) {
-                        Navigator.pop(context);
-                        Get.find<FetchDataController>().fetchData();
-                      });
-                    }else{
-                      AppToast.showWrongToast(AppToast.notUpdated);
-                    }
-                  }, child: const Icon(Icons.check,color: Colors.white60,));
-                }
-            ),
+                          Future.delayed(const Duration(seconds: 2))
+                              .then((value) {
+                            Navigator.pop(context);
+                            Get.find<FetchDataController>().fetchData();
+                          });
+                        } else {
+                          AppToast.showWrongToast(AppToast.notUpdated);
+                        }
+                      },
+                      child: const Icon(
+                        Icons.check,
+                        color: Colors.white60,
+                      ));
+                }),
               ],
             ),
-            const SizedBox(width: 20,)
+            SizedBox(
+              width: 20.rw,
+            )
           ],
         ),
         body: Padding(
-          padding: const EdgeInsets.only(top: 0,left: 16.0,right: 16,bottom: 16),
+          padding:
+              const EdgeInsets.only(top: 0, left: 16.0, right: 16, bottom: 16),
           child: Column(
             children: [
               const SizedBox(
@@ -178,7 +214,9 @@ class _UpdateNoteScreenState extends State<UpdateNoteScreen> {
                       color: Colors.white,
                     ),
                   ),
-                  SizedBox(width: 10,)
+                  SizedBox(
+                    width: 10,
+                  )
                 ],
               ),
               const SizedBox(
@@ -190,16 +228,21 @@ class _UpdateNoteScreenState extends State<UpdateNoteScreen> {
                 readOnly: true,
                 style: TextStyle(color: AppColors.yellowColor),
                 decoration: const InputDecoration(
-                    suffixIcon: Icon(Icons.calendar_month,color: Colors.white60,),
+                    suffixIcon: Icon(
+                      Icons.calendar_month,
+                      color: Colors.white60,
+                    ),
                     hintText: 'Date',
-                    hintStyle: TextStyle(color: Colors.white54, fontSize: 22.0,),
-                    border: InputBorder.none
-                ),
-                onTap: (){
+                    hintStyle: TextStyle(
+                      color: Colors.white54,
+                      fontSize: 22.0,
+                    ),
+                    border: InputBorder.none),
+                onTap: () {
                   _selectDate();
                 },
-                validator: (String? value){
-                  if(value?.isEmpty ?? true){
+                validator: (String? value) {
+                  if (value?.isEmpty ?? true) {
                     return "This field is mandatory";
                   }
                   return null;
@@ -213,11 +256,13 @@ class _UpdateNoteScreenState extends State<UpdateNoteScreen> {
                 style: const TextStyle(color: Colors.white60),
                 decoration: const InputDecoration(
                     hintText: 'Title',
-                    hintStyle: TextStyle(color: Colors.white54, fontSize: 22.0,),
-                    border: InputBorder.none
-                ),
-                validator: (String? value){
-                  if(value?.isEmpty ?? true){
+                    hintStyle: TextStyle(
+                      color: Colors.white54,
+                      fontSize: 22.0,
+                    ),
+                    border: InputBorder.none),
+                validator: (String? value) {
+                  if (value?.isEmpty ?? true) {
                     return "This field is mandatory";
                   }
                   return null;
@@ -231,9 +276,11 @@ class _UpdateNoteScreenState extends State<UpdateNoteScreen> {
                 style: const TextStyle(color: Colors.white60),
                 decoration: const InputDecoration(
                     hintText: 'Note',
-                    hintStyle: TextStyle(color: Colors.white54, fontSize: 18.0,),
-                    border: InputBorder.none
-                ),
+                    hintStyle: TextStyle(
+                      color: Colors.white54,
+                      fontSize: 18.0,
+                    ),
+                    border: InputBorder.none),
               ),
             ],
           ),
@@ -241,13 +288,15 @@ class _UpdateNoteScreenState extends State<UpdateNoteScreen> {
       ),
     );
   }
-  Future<void>_selectDate() async{
-    DateTime? _picker = await showDatePicker(context: context,
+
+  Future<void> _selectDate() async {
+    DateTime? _picker = await showDatePicker(
+      context: context,
       initialDate: DateTime.now(),
       firstDate: DateTime(2020),
       lastDate: DateTime(2100),
     );
-    if(_picker != null){
+    if (_picker != null) {
       String formattedDate = DateFormat("dd-MM-yyyy").format(_picker);
       _dateTEController.text = formattedDate.toString();
       setState(() {});

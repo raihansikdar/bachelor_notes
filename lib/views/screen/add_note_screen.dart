@@ -4,7 +4,6 @@ import 'package:bachelor_notes/controller/fetch_data_controller.dart';
 import 'package:bachelor_notes/controller/add_data_controller.dart';
 import 'package:bachelor_notes/utils/app%20toast.dart';
 import 'package:bachelor_notes/utils/app_colors.dart';
-import 'package:bachelor_notes/utils/custom_size_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -17,9 +16,9 @@ class AddNoteScreen extends StatefulWidget {
 }
 
 class _AddNoteScreenState extends State<AddNoteScreen> {
-  TextEditingController _dateTEController = TextEditingController();
-  TextEditingController _titleTEController = TextEditingController();
-  TextEditingController _noteTEController = TextEditingController();
+  final TextEditingController _dateTEController = TextEditingController();
+  final TextEditingController _titleTEController = TextEditingController();
+  final TextEditingController _noteTEController = TextEditingController();
 
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 

@@ -130,15 +130,13 @@ class FetchDataController extends GetxController {
         NoteModel _deletedNote = NoteModel.fromJson(response.first);
 
         // Now delete the note
-        final deleteResponse =
-            await db.delete('notesTable', where: 'id = ?', whereArgs: [id]);
+        final deleteResponse =await db.delete('notesTable', where: 'id = ?', whereArgs: [id]);
 
         _isLoading = false;
 
         if (deleteResponse > 0) {
           await db.insert('trashTable', _deletedNote.toJson());
-          await db.update(
-              'trashTable', {'time': time, 'deletedDate': deletedDate}, where: 'id = ?', whereArgs: [id]);
+          await db.update('trashTable', {'time': time, 'deletedDate': deletedDate}, where: 'id = ?', whereArgs: [id]);
 
           _searchNoteList.removeWhere((element) => element.id == id);
 

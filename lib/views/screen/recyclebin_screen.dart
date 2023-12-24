@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:developer';
 
 import 'package:bachelor_notes/controller/auto_delete_controller.dart';
@@ -71,7 +70,7 @@ class _RecycleBinScreenState extends State<RecycleBinScreen> {
           children: [
             GestureDetector(
               onTap: (){
-                Get.find<FetchDataController>().trashNotesList.isEmpty ? AppToast.showNormalToast('Recycle bin is already empty.')
+                Get.find<FetchDataController>().trashNotesList.isEmpty ? AppToast.showWrongToast('Recycle bin is already empty.')
                     :  showDialog(context: context, builder: (context){
 
                       return AlertDialog(
