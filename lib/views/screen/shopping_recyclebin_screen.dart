@@ -113,7 +113,7 @@ class _ShoppingRecycleBinScreenState extends State<ShoppingRecycleBinScreen> {
                     borderRadius: BorderRadius.circular(20.0)),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
-                      vertical: 12.0, horizontal: 8.0),
+                      vertical: 8.0, horizontal: 8.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -140,7 +140,7 @@ class _ShoppingRecycleBinScreenState extends State<ShoppingRecycleBinScreen> {
             const SizedBox(
               height: 12.0,
             ),
-            const ScrollLoopAutoScroll(
+            /*const ScrollLoopAutoScroll(
               scrollDirection: Axis.horizontal,
               //required
               delay: Duration(seconds: 1),
@@ -158,7 +158,7 @@ class _ShoppingRecycleBinScreenState extends State<ShoppingRecycleBinScreen> {
                     letterSpacing: 0.5,
                     color: Colors.yellow),
               ),
-            ),
+            ),*/
             const SizedBox(
               height: 10.0,
             ),

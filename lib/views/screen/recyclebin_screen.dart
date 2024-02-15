@@ -99,7 +99,7 @@ class _RecycleBinScreenState extends State<RecycleBinScreen> {
                   borderRadius: BorderRadius.circular(20.0)
                 ),
                 child:  Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 12.0,horizontal: 8.0),
+                  padding: const EdgeInsets.symmetric(vertical: 8.0,horizontal: 8.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -114,7 +114,7 @@ class _RecycleBinScreenState extends State<RecycleBinScreen> {
               ),
             ),
             const SizedBox(height: 8.0,),
-            const ScrollLoopAutoScroll(
+          /*  const ScrollLoopAutoScroll(
               scrollDirection: Axis.horizontal, //required
               delay: Duration(seconds: 1),
               duration: Duration(seconds: 150),
@@ -129,7 +129,7 @@ class _RecycleBinScreenState extends State<RecycleBinScreen> {
                   fontWeight: FontWeight.w400,
                   letterSpacing: 0.5,
                   color: Colors.yellow),)
-            ),
+            ),*/
             const SizedBox(height: 8.0,),
             GetBuilder<FetchDataController>(
                 builder: (_fetchDataController) {

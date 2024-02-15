@@ -68,7 +68,7 @@ class _ShoppingNoteHomeScreenState extends State<ShoppingNoteHomeScreen> {
                 children: [
                   Text(
                     "Bachelor Notes",
-                    style: TextStyle(fontSize: 20.rSp, color: Colors.yellow,fontWeight: FontWeight.w600),
+                    style: TextStyle(fontSize: 20.rSp, color: Colors.yellow, fontFamily: 'Lobster',fontWeight: FontWeight.w600),
                   ),
                   Text(
                     "Shopping Notepad",
@@ -204,7 +204,7 @@ class _ShoppingNoteHomeScreenState extends State<ShoppingNoteHomeScreen> {
                 const SizedBox(width: 8.0,),
               ],
             ),
-            const SizedBox(height: 5,),
+            const SizedBox(height: 8,),
             ScrollLoopAutoScroll(
               scrollDirection: Axis.horizontal, //required
               delay: const Duration(seconds: 1),
